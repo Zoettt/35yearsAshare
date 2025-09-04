@@ -1,0 +1,53 @@
+# Python 相关
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# IDE 相关
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 数据库文件（可选，根据需要调整）
+# *.db
+
+# 临时和缓存文件
+*.tmp
+*.bak
+*~
+
+# 环境变量文件
+.env
+.env.local
+
+# 输出文件中的临时数据
+output/*/download_progress_backup_*.json
+output/*/download_report_*.txt
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json

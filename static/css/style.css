@@ -1,0 +1,311 @@
+/* 交互式股票图表Web应用样式 */
+
+/* 全局样式 */
+body {
+    font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+/* 导航栏样式 */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.navbar-text {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* 卡片样式 */
+.card {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 8px 8px 0 0 !important;
+    border: none;
+    padding: 15px 20px;
+}
+
+.card-header h5, .card-header h6 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* 表单样式 */
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.form-label i {
+    margin-right: 8px;
+    color: #6c757d;
+}
+
+.form-control, .form-select {
+    border: 2px solid #e9ecef;
+    border-radius: 6px;
+    padding: 10px 12px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-check-input:checked {
+    background-color: #667eea;
+    border-color: #667eea;
+}
+
+/* Select2样式定制 */
+.select2-container .select2-selection--multiple {
+    border: 2px solid #e9ecef !important;
+    border-radius: 6px !important;
+    min-height: 44px !important;
+}
+
+.select2-container--default .select2-selection--multiple:focus {
+    border-color: #667eea !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #667eea !important;
+    border: 1px solid #667eea !important;
+    color: white !important;
+    border-radius: 4px !important;
+    margin: 2px !important;
+    padding: 2px 8px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    color: white !important;
+    margin-right: 5px !important;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    color: #ff6b6b !important;
+}
+
+/* 按钮样式 */
+.btn {
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+.btn-outline-secondary {
+    border: 2px solid #6c757d;
+    color: #6c757d;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #6c757d;
+    transform: translateY(-1px);
+}
+
+/* 图表容器样式 */
+.chart-container {
+    position: relative;
+    background: white;
+    border-radius: 0 0 8px 8px;
+    min-height: 600px;
+}
+
+#plotlyChart {
+    border-radius: 0 0 8px 8px;
+}
+
+/* 初始状态样式 */
+.initial-chart-placeholder {
+    padding: 80px 20px;
+}
+
+.initial-chart-placeholder i {
+    opacity: 0.3;
+}
+
+.initial-chart-placeholder h4 {
+    margin-top: 20px;
+    font-weight: 300;
+}
+
+.initial-chart-placeholder p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* 加载动画 */
+.spinner-border-sm {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* 状态文本 */
+#statusText {
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* 徽章样式 */
+.badge {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 20px;
+}
+
+/* 功能说明区域 */
+.card:last-child {
+    margin-bottom: 40px;
+}
+
+.card ul {
+    padding-left: 1rem;
+    margin-bottom: 0;
+}
+
+.card ul li {
+    margin-bottom: 4px;
+    color: #6c757d;
+}
+
+.card h6 {
+    color: #495057;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.card h6 i {
+    margin-right: 8px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+    
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+    
+    .card-body {
+        padding: 15px;
+    }
+    
+    .btn-lg {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+    
+    .initial-chart-placeholder {
+        padding: 40px 10px;
+    }
+    
+    .initial-chart-placeholder i {
+        font-size: 3rem !important;
+    }
+    
+    .initial-chart-placeholder h4 {
+        font-size: 1.2rem;
+    }
+    
+    .row .col-md-4, .row .col-md-3, .row .col-md-2 {
+        margin-bottom: 15px;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
+
+/* 特殊效果 */
+.chart-container:hover {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+/* 图表工具栏样式调整 */
+.modebar {
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.modebar:hover {
+    opacity: 1;
+}
+
+/* 错误和成功消息样式 */
+.alert {
+    border-radius: 6px;
+    border: none;
+    margin-top: 15px;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.alert-info {
+    background-color: #cce7ff;
+    color: #004085;
+}
