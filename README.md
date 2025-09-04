@@ -49,17 +49,20 @@ source venv/bin/activate  # Linux/Mac
 pip install -r requirements.txt
 ```
 
-4. **下载数据**
+4. **下载数据**（⚠️ 重要：数据文件较大，未包含在仓库中）
 ```bash
-# 下载K线数据（较慢，建议晚上运行）
-python run_kline_download.py
+# 推荐：一次性下载全部数据（1990年至今）
+python full_download_1990.py
 
-# 下载指数数据（较快）
+# 或者分步下载：
+# 下载指数数据（较快，约10分钟）
 python run_index_download.py
 
-# 或者一次性下载全部数据
-python full_download_1990.py
+# 下载K线数据（较慢，约2-6小时）
+python run_kline_download.py
 ```
+
+> 📋 **数据说明**: 由于数据库文件约2.3GB，无法上传到GitHub。请查看 [DATA_SETUP.md](DATA_SETUP.md) 了解详细的数据生成步骤。
 
 5. **启动Web应用**
 ```bash
