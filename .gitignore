@@ -24,8 +24,9 @@ ENV/
 .DS_Store
 Thumbs.db
 
-# 数据库文件（可选，根据需要调整）
-# *.db
+# 数据库文件（文件太大，不适合上传到GitHub）
+*.db
+output/*/
 
 # 临时和缓存文件
 *.tmp
