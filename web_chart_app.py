@@ -371,12 +371,19 @@ class WebChartApp:
             color = colors[i % len(colors)]
             y_data = plot_df['normalized_price'] if normalize else plot_df['close']
             
-            # 计算点的大小基于成交量
+            # 计算点的大小基于成交量 (保留原方法，暂时不使用)
             volumes = plot_df['volume']
             if volumes.max() > volumes.min():
-                normalized_volume = 5 + (volumes - volumes.min()) / (volumes.max() - volumes.min()) * 25
+                normalized_volume_size = 5 + (volumes - volumes.min()) / (volumes.max() - volumes.min()) * 25
             else:
-                normalized_volume = 15
+                normalized_volume_size = 15
+            
+            # 新方法：计算颜色深浅基于成交量
+            if volumes.max() > volumes.min():
+                # 将成交量标准化到0.3-1.0的范围，用于控制颜色透明度
+                volume_opacity = 0.3 + (volumes - volumes.min()) / (volumes.max() - volumes.min()) * 0.7
+            else:
+                volume_opacity = 0.7
             
             # 准备hover信息
             hover_text = []
@@ -406,10 +413,11 @@ class WebChartApp:
                 y=y_data.tolist(),  # 转换为Python列表
                 mode='markers+lines',
                 marker=dict(
-                    size=normalized_volume.tolist() if hasattr(normalized_volume, 'tolist') else normalized_volume,
+                    size=12,  # 统一大小
                     color=color,
-                    opacity=0.7,
+                    opacity=volume_opacity.tolist() if hasattr(volume_opacity, 'tolist') else volume_opacity,  # 用透明度表示成交量
                     line=dict(width=1, color='white')
+                    # 可切换回原方法: size=normalized_volume_size.tolist() if hasattr(normalized_volume_size, 'tolist') else normalized_volume_size,
                 ),
                 line=dict(color=color, width=2),
                 name=f"{stock_df.iloc[0]['name']} ({plot_df['symbol'].iloc[0]})",
@@ -472,10 +480,10 @@ class WebChartApp:
         
         # 设置图表布局
         if normalize:
-            title = '股票价格标准化对比图（基期=100，点大小=成交量）'
+            title = '股票价格标准化对比图（基期=100，点颜色深浅=成交量）'
             y_title = '标准化价格'
         else:
-            title = '股票价格走势图（左轴=股票价格，右轴=指数点位，点大小=成交量）'
+            title = '股票价格走势图（左轴=股票价格，右轴=指数点位，点颜色深浅=成交量）'
             y_title = '股票价格 (元)'
         
         # 基础布局配置
@@ -527,7 +535,7 @@ class WebChartApp:
         fig.update_layout(
             **layout_config,
             hovermode='closest',  # 只显示鼠标最近的一个数据点
-            dragmode='zoom',  # 默认为缩放模式，支持Mac触摸板
+            dragmode='pan',  # 默认为平移模式，更适合触摸设备
             showlegend=True,
             legend=dict(
                 orientation="v",

@@ -308,18 +308,20 @@ $(document).ready(function() {
             $('#initialMessage').hide();
             $('#plotlyChart').show();
             
-            // 优化图表布局以支持Mac触摸板
-            chartData.layout.dragmode = 'zoom';  // 默认为缩放模式
-            chartData.layout.scrollZoom = true;   // 启用滚轮/触摸板缩放
+            // 优化图表布局以支持触摸设备
+            chartData.layout.dragmode = 'pan';   // 默认为平移模式，双指拖拽=平移
+            chartData.layout.scrollZoom = true;   // 启用滚轮/双指缩放
             
             // 渲染图表
             Plotly.newPlot('plotlyChart', chartData.data, chartData.layout, {
                 responsive: true,
                 displayModeBar: true,
                 displaylogo: false,
-                modeBarButtonsToRemove: ['lasso2d', 'autoScale2d'],  // 保留pan2d按钮
-                scrollZoom: true,  // 明确启用滚轮缩放
+                modeBarButtonsToRemove: ['lasso2d', 'autoScale2d'],  // 保留pan2d和zoom2d按钮
+                scrollZoom: true,  // 明确启用滚轮/双指缩放
                 doubleClick: 'reset',  // 双击重置缩放
+                touchDelay: 150,  // 触摸延迟，帮助区分单指和双指操作
+                showTips: false,  // 减少触摸时的提示干扰
                 toImageButtonOptions: {
                     format: 'png',
                     filename: 'stock_chart',
